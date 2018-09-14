@@ -10,16 +10,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.bumptech.glide.Glide;
-
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder>  {
+public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
+
     private List<NewsData> newsData;
     private Context context;
 
@@ -71,7 +70,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder>  {
         holder.feedAuthor.setText(data.getAuthor());
         holder.sectionName.setText(data.getSectionName());
         Glide.with(context).load(data.getFeedImage()).into(holder.thumbnail);
-        String[] dateTime = data.getDateOfPublish().split("T");
+        String[] dateTime = data.getDateOfPublish().split(context.getString(R.string.date_spilter));
         holder.feedDate.setText(dateTime[0]);
     }
 

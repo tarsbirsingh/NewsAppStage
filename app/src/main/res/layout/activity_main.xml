@@ -1,35 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <Spinner
+        android:id="@+id/category_spinner"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/spinner_height"
+        android:background="@drawable/spinner_background" />
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/news_list"
         android:layout_width="wrap_content"
-        android:layout_marginStart="@dimen/eight_dp"
-        android:layout_height="wrap_content">
-    </android.support.v7.widget.RecyclerView>
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/recycler_view_margin_left"
+        android:layout_marginTop="@dimen/recycler_view_margin_top" />
+
     <TextView
         android:id="@+id/status_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
+        android:drawableTop="@drawable/empty"
+        android:text="@string/no_news"
+        android:textSize="@dimen/status_text_view_text_size"
         android:visibility="gone"
-        tools:text="no news feed" />
+        tools:text="@string/no_news" />
+
     <TextView
         android:id="@+id/network_status_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
+        android:drawableTop="@drawable/cloud_off"
+        android:text="@string/no_internet_text"
+        android:textSize="@dimen/status_text_view_text_size"
         android:visibility="gone"
-        tools:text="@string/status_text" />
-    <ProgressBar
-        android:id="@+id/loading_indicator"
+        tools:text="@string/no_internet_text" />
+
+    <Button
+        android:id="@+id/retryButton"
+        style="?android:attr/borderlessButtonStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"/>
+        android:layout_below="@id/network_status_text_view"
+        android:layout_centerInParent="true"
+        android:text="@string/retry_button"
+        android:textAllCaps="true"
+        android:textColor="@color/retry_button_text_color"
+        android:visibility="gone" />
+
+    <ProgressBar
+        android:id="@+id/loading_indicator"
+        style="@style/Widget.AppCompat.ProgressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true" />
 
 </RelativeLayout>

@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class QueryUtils {
+
     private static final String LOG_TAG = QueryUtils.class.getName();
 
     private QueryUtils() {
@@ -56,7 +57,7 @@ public class QueryUtils {
                 if (tags.length() > 0) {
                     author = tags.getJSONObject(0).getString("webTitle");
                 }
-                NewsData data = new NewsData(thumbnail, author, title, date, webUrl,sectionName);
+                NewsData data = new NewsData(thumbnail, author, title, date, webUrl, sectionName);
                 newsData.add(data);
             }
 
@@ -85,7 +86,6 @@ public class QueryUtils {
     private static String makeHttpRequest(URL url) throws IOException {
         String jsonResponse = "";
 
-        // If the URL is null, then return early.
         if (url == null) {
             return jsonResponse;
         }
@@ -112,9 +112,6 @@ public class QueryUtils {
                 urlConnection.disconnect();
             }
             if (inputStream != null) {
-                // Closing the input stream could throw an IOException, which is why
-                // the makeHttpRequest(URL url) method signature specifies than an IOException
-                // could be thrown.
                 inputStream.close();
             }
         }
@@ -143,10 +140,8 @@ public class QueryUtils {
      * Query the Guardian dataset and return a list of {@link NewsData} objects.
      */
     public static List<NewsData> fetchEarthquakeData(String requestUrl) {
-        // Create URL object
         URL url = createUrl(requestUrl);
         Log.d(LOG_TAG, "URL " + url);
-        // Perform HTTP request to the URL and receive a JSON response back
         String jsonResponse = null;
         try {
             jsonResponse = makeHttpRequest(url);
@@ -158,4 +153,3 @@ public class QueryUtils {
         return earthquakes;
     }
 }
-
